@@ -207,4 +207,4 @@ TSWLatexianTemp*
 *.summary
 
 # Allow
-!Exercise2-4/Tools/de2_assignments.qsf
+!Tools/de2_assignments.qsf
