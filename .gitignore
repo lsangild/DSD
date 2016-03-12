@@ -205,3 +205,6 @@ TSWLatexianTemp*
 *.psm
 *.jdi
 *.summary
+
+# Allow
+!DSD/Exercise2-4/Tools/de2_assignments.qsf
