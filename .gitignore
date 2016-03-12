@@ -203,3 +203,5 @@ TSWLatexianTemp*
 *.dbs
 *.prw
 *.psm
+*.jdi
+*.summary
