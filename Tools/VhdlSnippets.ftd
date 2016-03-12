@@ -1,0 +1,291 @@
+div
+Ext:vhd
+--**********************************************************************[>END<] !$[FingerTextData FingerTextData]@#
+comblk
+Ext:vhd
+$[![(cha)div]!]
+-- 
+$[![(cha)div]!]
+[>END<] !$[FingerTextData FingerTextData]@#
+rng
+Ext:vhd
+$[![high]!] downto $[![low]!][>END<] !$[FingerTextData FingerTextData]@#
+torng
+Ext:vhd
+$[![low]!] to $[![high]!][>END<] !$[FingerTextData FingerTextData]@#
+compdecl
+Ext:vhd
+component $[![ComponentName]!]
+  $[![(cha)genblk]!]
+  $[![(cha)portblk]!]
+[>END<] !$[FingerTextData FingerTextData]@#
+compinst
+Ext:vhd
+$[![lbl]!]_l: $[![ComponentName]!]
+  generic map (
+    $[![NAME_G => value,]!]
+  )
+  port map (
+    $[![signalName_io => signalName_s,]!]
+  );
+[>END<] !$[FingerTextData FingerTextData]@#
+generic
+Ext:vhd
+$[![GENERIC_NAME]!]_G : $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+in
+Ext:vhd
+$[![signalName]!]_i : in $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+out
+Ext:vhd
+$[![signalName]!]_o : out $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+io
+Ext:vhd
+$[![signalName]!]_io : inout $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+const
+Ext:vhd
+constant $[![CONSTANT]!]_C : $[![type_name]!] := $[![value]!];[>END<] !$[FingerTextData FingerTextData]@#
+sig
+Ext:vhd
+signal $[![signalName]!]_s : $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+reg
+Ext:vhd
+signal $[![registerName]!]_r : $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+rxeg
+Ext:vhd
+signal $[![registerName]!]_r, $[![registerName]!]_x : $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+var
+Ext:vhd
+variable $[![variableName]!]_v : $[![type_name]!] $[![:= default]!];[>END<] !$[FingerTextData FingerTextData]@#
+sl
+Ext:vhd
+std_logic[>END<] !$[FingerTextData FingerTextData]@#
+slv
+Ext:vhd
+std_logic_vector($[![(cha)rng]!])[>END<] !$[FingerTextData FingerTextData]@#
+signed
+Ext:vhd
+signed($[![(cha)rng]!])[>END<] !$[FingerTextData FingerTextData]@#
+unsign
+Ext:vhd
+unsigned($[![(cha)rng]!])[>END<] !$[FingerTextData FingerTextData]@#
+func
+Ext:vhd
+function $[![FunctionName]!] (
+  $[![input1_i]!] : $[![type_name1]!];
+  $[![input2_i]!] : $[![type_name2]!]
+  ) return $[![return type_name]!] is
+  -- Declarative items (constants, variables, etc.)
+begin
+  -- Function body.
+end function;
+[>END<] !$[FingerTextData FingerTextData]@#
+funcdecl
+Ext:vhd
+function $[![FunctionName]!] (
+  $[![input1_i]!] : $[![type_name1]!];
+  $[![input2_i]!] : $[![type_name2]!]
+  ) return $[![return type_name]!];
+[>END<] !$[FingerTextData FingerTextData]@#
+procedure
+Ext:vhd
+procedure $[![ProcedureName]!] (
+  $[![input]!]_i  : in $[![input type_name]!];
+  $[![output]!]_o : out $[![output type_name]!]
+  ) is
+  -- Declarative items (constants, variables, etc.)
+begin
+  -- Procedure body.
+end procedure;
+[>END<] !$[FingerTextData FingerTextData]@#
+proceduredecl
+Ext:vhd
+procedure $[![ProcedureName]!] (
+  $[![input]!]_i  : in $[![input type_name]!];
+  $[![output]!]_o : out $[![output type_name]!]
+  );
+[>END<] !$[FingerTextData FingerTextData]@#
+combproc
+Ext:vhd
+$[![lbl]!]_l: process ($[![sensitivity list]!])
+begin
+  $[![-- Do stuff...]!]
+end process;
+[>END<] !$[FingerTextData FingerTextData]@#
+seqproc
+Ext:vhd
+$[![lbl]!]_l: process ($[![clk]!])
+begin
+  if rising_edge($[![clk]!]) then
+    $[![-- Do stuff...]!]
+  end if;
+end process;
+[>END<] !$[FingerTextData FingerTextData]@#
+if
+Ext:vhd
+if $[![cond]!] then
+  $[![-- True...]!]
+end if;
+[>END<] !$[FingerTextData FingerTextData]@#
+ife
+Ext:vhd
+if $[![cond]!] then
+  $[![-- True...]!]
+else
+  $[![-- False...]!]
+end if;
+[>END<] !$[FingerTextData FingerTextData]@#
+ifee
+Ext:vhd
+if $[![cond1]!] then
+  $[![-- True 1...]!]
+elsif $[![cond2]!] then
+  $[![-- True 2...]!]
+else
+  $[![-- False...]!]
+end if;
+[>END<] !$[FingerTextData FingerTextData]@#
+case
+Ext:vhd
+case $[![signal_s]!] is
+  when $[![case_A]!] =>
+    -- Do stuff for case A;
+  when $[![case_B]!] =>
+    -- Do stuff for case B;
+  when others =>
+    -- Do stuff for everything else;
+end case;
+[>END<] !$[FingerTextData FingerTextData]@#
+with
+Ext:vhd
+with $[![choice expression]!] select
+  $[![signal_s]!] <= $[![expression A]!] when $[![choice A]!],
+              $[![expression B]!] when $[![choice B]!],
+              $[![expression for others]!] when others;
+[>END<] !$[FingerTextData FingerTextData]@#
+when
+Ext:vhd
+$[![signal_s]!] <= $[![expression A]!] when $[![condition A]!] else
+                   $[![expression B]!] when $[![condition B]!] else
+                   $[![expression for others]!];
+[>END<] !$[FingerTextData FingerTextData]@#
+ifgen
+Ext:vhd
+$[![lbl]!]_l: if $[![condition]!] generate
+begin
+  -- statements...
+end generate;
+[>END<] !$[FingerTextData FingerTextData]@#
+loopgen
+Ext:vhd
+$[![lbl]!]_l: for in $[![loop cntr]!] $[![(cha)torng]!] generate
+begin
+  -- statements...
+end generate;
+[>END<] !$[FingerTextData FingerTextData]@#
+for
+Ext:vhd
+for $[![loop cntr]!] in $[![(cha)torng]!] loop
+begin
+  -- statements...
+end loop;
+[>END<] !$[FingerTextData FingerTextData]@#
+while
+Ext:vhd
+while $[![condition]!] loop
+begin
+  -- statements...
+end loop;
+[>END<] !$[FingerTextData FingerTextData]@#
+subtype
+Ext:vhd
+subtype $[![SubtypeName]!]_t is $[![BasetypeName]!] $[![(cha)torng]!];[>END<] !$[FingerTextData FingerTextData]@#
+type
+Ext:vhd
+type $[![TypeName]!]_t is $[![(cha)torng]!];[>END<] !$[FingerTextData FingerTextData]@#
+array
+Ext:vhd
+type $[![TypeName]!]_t is array($[![(cha)torng]!]) of $[![OtherTypeName]!];[>END<] !$[FingerTextData FingerTextData]@#
+array2d
+Ext:vhd
+type $[![TypeName]!]_t is array($[![(cha)torng]!], $[![(cha)torng]!]) of $[![OtherTypeName]!];[>END<] !$[FingerTextData FingerTextData]@#
+rec
+Ext:vhd
+type $[![TypeName]!]_t is 
+  record
+    $[![memberName1]!_m] : $[![Type1]!];
+    $[![memberName2]!_m] : $[![Type2]!];
+  end record;[>END<] !$[FingerTextData FingerTextData]@#
+enum
+Ext:vhd
+type $[![EnumerationName]!]_t is ($[![STRING1]!], $[![STRING2]!]);[>END<] !$[FingerTextData FingerTextData]@#
+gpl
+Ext:vhd
+$[![(cha)div]!]
+-- Copyright $[![(key)DATE:yyyy]!] by XESS Corp <http://www.xess.com>.
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+$[![(cha)div]!]
+ 
+[>END<] !$[FingerTextData FingerTextData]@#
+libs
+Ext:vhd
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.math_real.all;
+--library unisim;
+--use unisim.vcomponents.all;
+[>END<] !$[FingerTextData FingerTextData]@#
+pckg
+Ext:vhd
+package $[![PackageName]!]Pckg is
+  -- Place declarations for types, constants, components, functions...
+end package;
+[>END<] !$[FingerTextData FingerTextData]@#
+genblk
+ext:vhd
+generic (
+  $[![NAME_G : type_name := value;]!]
+);[>END<] !$[FingerTextData FingerTextData]@#
+portblk
+ext:vhd
+port (
+  $[![input_i : in type_name;
+  output_o : out type_name;
+  both_io : inout type_name]!]
+);[>END<] !$[FingerTextData FingerTextData]@#
+ent
+Ext:vhd
+entity $[![EntityName]!] is
+  generic (
+    -- Generics go here...
+  );
+  port (
+    -- Inputs, outputs, inouts go here...
+  );
+end entity;
+[>END<] !$[FingerTextData FingerTextData]@#
+arch
+Ext:vhd
+architecture arch of $[![EntityName]!] is
+  -- declare signals, components here...
+begin
+  -- architecture body...
+end architecture;
+[>END<] !$[FingerTextData FingerTextData]@#
+module
+Ext:vhd
+$[![(cha)libs]!]
+$[![(cha)ent]!]
+$[![(cha)arch]!]
+[>END<] !$[FingerTextData FingerTextData]@#
