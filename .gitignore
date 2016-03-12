@@ -164,7 +164,6 @@ TSWLatexianTemp*
 #Quartus
 *.qsf
 *.bak
-*.vwf
 *.temp
 *.rpt
 *.done
