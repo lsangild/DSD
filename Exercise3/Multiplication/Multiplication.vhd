@@ -6,13 +6,14 @@ use ieee.numeric_std.all;
 -----Entity----
 entity multiplication is
 	port(
-	SW		:	in std_logic_vector(3 downto 0);
-	LEDR	:	out std_logic_vector(3 downto 0)
+	SW		:	in std_logic_vector(7 downto 0);
+	LEDR	:	out std_logic_vector(11 downto 0)
 	);
 end multiplication;
 
 ----Architecture-----
 architecture multiplier of multiplication is
+constant tal : integer := 1;
 begin
-	LEDR(3 downto 0) <= std_logic_vector(unsigned(SW(3 downto 2)) * unsigned(SW(1 downto 0)));
+	LEDR <= std_logic_vector(unsigned(SW) * TO_UNSIGNED(tal,4));
 end multiplier;
