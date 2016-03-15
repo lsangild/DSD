@@ -13,7 +13,7 @@ end multiplication;
 
 ----Architecture-----
 architecture multiplier of multiplication is
-constant tal : integer := 1;
+constant tal : integer := 4;
 begin
 	LEDR <= std_logic_vector(unsigned(SW) * TO_UNSIGNED(tal,4));
 end multiplier;
