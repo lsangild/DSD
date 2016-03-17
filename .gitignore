@@ -205,6 +205,7 @@ TSWLatexianTemp*
 *.psm
 *.jdi
 *.summary
+*.tdf
 
 # Allow
 !Tools/de2_assignments.qsf
