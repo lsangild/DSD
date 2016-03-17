@@ -206,6 +206,14 @@ TSWLatexianTemp*
 *.jdi
 *.summary
 *.tdf
+*.rdb
+*.tmw_info
+*.dfp
+*.rcfdb
+*.hb_info
+*.pin
+*.cdf
+*.tdb
 
 # Allow
 !Tools/de2_assignments.qsf
