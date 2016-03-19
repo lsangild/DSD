@@ -12,7 +12,7 @@ end Demultiplexer;
 -----Architecture-----
 architecture demuxer of Demultiplexer is
 begin
-disp0 <= data_in(20 downto 14);
+disp0 <= data_in(6 downto 0);
 disp1 <= data_in(13 downto 7);
-disp2 <= data_in(6 downto 0);
+disp2 <= data_in(20 downto 14);
 end demuxer;
