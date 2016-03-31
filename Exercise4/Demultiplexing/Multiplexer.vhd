@@ -13,7 +13,6 @@ end Multiplexer;
 
 -----ARCHITECTURE-----
 architecture Mu_test of Multiplexer is
---signal data : std_logic_vector(11 downto 0) := "000000000000";
 constant sig_On		: std_logic_vector(20 downto 0) := "100000001010111111111";
 constant sig_Err		: std_logic_vector(20 downto 0) := "000011001011110101111";
 signal	sig_val		: std_logic_vector(20 downto 0) := "111111111111111111111";
