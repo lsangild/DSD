@@ -162,19 +162,19 @@ TSWLatexianTemp*
 *.dropbox
 
 #Quartus
-*.qsf
+#*.qsf
 *.bak
 *.temp
 *.rpt
 *.done
 *.smsg
-*.db_info
+#*.db_info
 *.hdb
 *.cdb
 *.qmsg
 *.ddb
 *.rvd
-*.xml
+#*.xml
 *.bpm
 *.idb
 *.kpt
