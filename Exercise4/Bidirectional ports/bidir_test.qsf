@@ -479,4 +479,8 @@ set_location_assignment PIN_V23 -to GPIO_1[33]
 set_location_assignment PIN_W25 -to GPIO_1[34]
 set_location_assignment PIN_W23 -to GPIO_1[35]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity exercise1 -section_id Top
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name VECTOR_OUTPUT_FORMAT VWF
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "F:/Dropbox/Universitet/Elektronik/2. semester/DSD/Exercise2-4/Exercise4/Bidirectional ports/Waveform.vwf"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

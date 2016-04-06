@@ -11,7 +11,9 @@ end bidir_test;
 architecture bidir of bidir_test is
 begin
 	GPIO_1(0)	<= NOT KEY(0)	when SW(0) = '0' else 'Z';
+	LEDR(0)		<= NOT KEY(0)	when SW(0) = '0' else 'Z';
 	LEDR(1)		<= GPIO_1(1) 	when SW(0) = '0' else 'Z';
 	GPIO_1(1)	<= KEY(1)		when SW(0) = '1' else 'Z';
+	LEDR(1)		<= KEY(1)		when SW(0) = '1' else 'Z';
 	LEDR(0)		<= GPIO_1(0)	when SW(0) = '1' else 'Z';
 end bidir;
