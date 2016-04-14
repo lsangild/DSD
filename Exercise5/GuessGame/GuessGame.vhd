@@ -27,7 +27,7 @@ process(show, set, try)
 	begin
 	if set = '0' then
 		setValue <= inputs;
-		dispValue <= setValue; -- to avoid inferred latch
+		dispValue <= setValue; -- to avoid inferred latch for dispValue
 	elsif show = '0' then
 		dispValue <= setValue;
 	elsif try = '0' then

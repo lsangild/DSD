@@ -16,18 +16,19 @@ architecture guessing of TesterGuessGame2P is
 constant turnOff : std_logic_vector(6 downto 0) := "1111111";
 constant P		 : std_logic_vector(6 downto 0) := "0001100";
 signal p1Hex1, p1Hex10, p2Hex1, p2Hex10 : std_logic_vector(6 downto 0);
-signal p1Code, p2Code : std_logic_vector(7 downto 0);
+signal p1Code, p2Code	: std_logic_vector(7 downto 0);
+signal p1key, p2key	: std_logic_vector(2 downto 0);
 begin
 HEX2 <= turnOff;
 HEX3 <= turnOff;
 HEX5 <= P;
 -- architecture body...
-P1: entity work.GuessGame port map (	inputs => p1Code, set => KEY(0), 
-										show => KEY(1), try => KEY(2), 
+P1: entity work.GuessGame port map (	inputs => p1Code, set => p1key(0), 
+										show => p1key(1), try => p1key(2), 
 										hex1 => p1Hex1, hex10 => p1Hex10);
 
-P2: entity work.GuessGame port map (	inputs => p2Code, set => KEY(0), 
-										show => KEY(1), try => KEY(2), 
+P2: entity work.GuessGame port map (	inputs => p2Code, set => p2key(0), 
+										show => p2key(1), try => p2key(2), 
 										hex1 => p2Hex1, hex10 => p2Hex10);
 
 process(SW(8))
@@ -38,12 +39,14 @@ begin
 		HEX0 <= p1Hex1;
 		HEX1 <= p1Hex10;
 		p1Code <= SW(7 downto 0);
+		p1key <= KEY(2 downto 0);
 	  elsif (SW(8) = '1') then
 	  -- Player 2
 		HEX4 <= "0100100";
 		HEX0 <= p2Hex1;
 		HEX1 <= p2Hex10;
 		p2Code <= SW(7 downto 0);
+		p2key <= KEY(2 downto 0);
 	  else
 	  --go die --
 		HEX4 <= turnOff;
