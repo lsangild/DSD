@@ -14,7 +14,6 @@ entity GuessGame is
 	);	
 end GuessGame;
 
-
 architecture guessing of GuessGame is
 -- declare signals, components here...
 signal setValue, dispValue : std_logic_vector(7 downto 0) := "00000000";
