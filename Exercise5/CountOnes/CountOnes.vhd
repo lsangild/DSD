@@ -2,10 +2,11 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
 
 -----Entities-----
 entity CountOnes is
-	port( A : in std_logic_vector(7 downto 0);
+	port( A    : in std_logic_vector(7 downto 0);
 			ones : out std_logic_vector(3 downto 0)
 	);
 end CountOnes;
@@ -14,11 +15,10 @@ end CountOnes;
 architecture Counter of CountOnes is
 begin
 po: process(A)
-	variable count : std_logic_vector(3 downto 0);
+	variable count : std_logic_vector(3 downto 0) := "0000";
 	begin
-	count:= "0000";
 	for index in 7 downto 0 loop
-		count := std_logic_vector(unsigned(count) + resize(unsigned(A(index),4)));
+		count := unsigned(count) + unsigned(A(index));
 	end loop;
 	ones <= count;
 end process;

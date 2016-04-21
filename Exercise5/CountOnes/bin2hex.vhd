@@ -9,7 +9,7 @@ entity Binary_7_Segment is
 	);
 end Binary_7_Segment;
 	
-architecture Test of Binary_7_Segment is
+architecture binToHex of Binary_7_Segment is
 begin
 	with num select
 	vis <=	"0000001" when "0000",  -- 0
@@ -23,4 +23,4 @@ begin
 				"0000000" when "1000",  -- 8
 				"0001100" when "1001",  -- 9
 				"1111111" when others;
-end Test;
+end binToHex;
