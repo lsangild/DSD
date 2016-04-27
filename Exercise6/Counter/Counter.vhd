@@ -12,7 +12,7 @@ entity Counter is
 			LEDR		: out std_logic_vector(0 downto 0);
 			HEX0		: out std_logic_vector(6 downto 0)
 	);
-end entity;
+end Counter;
 
 ----- Architecture -----
 architecture multi_counter of Counter is
@@ -24,10 +24,10 @@ begin
   -- architecture body...
   process(reset, clk)
   begin
-	if(reset = '0') then		
+	if(reset = '0') then	
 	elsif (rising_edge(clk)) then
-		case (mode) is 
-		when "00" => 
+		case (mode) is
+		when "00" =>
 		  -- count from 0-9
 			if count < X"9" then
 			  count <= count + "1";
@@ -54,8 +54,8 @@ begin
 			else
 			count <= "00";
 			cout <= "01";
-		  end if;		  
-		end case;			
+		  end if;
+		end case;
 	end if;
   end process;
-end architecture;
+end multi_counter;
