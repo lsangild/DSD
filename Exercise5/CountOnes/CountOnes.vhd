@@ -2,7 +2,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_arith.all;
 
 -----Entities-----
 entity CountOnes is
@@ -18,8 +17,8 @@ po: process(A)
 	variable count : std_logic_vector(3 downto 0) := "0000";
 	begin
 	for index in 7 downto 0 loop
-		count := unsigned(count) + unsigned(A(index));
+		count := std_logic_vector(unsigned(count) + resize(unsigned(A(index downto index)),4));
 	end loop;
 	ones <= count;
-end process;
+end process po;
 end Counter;
