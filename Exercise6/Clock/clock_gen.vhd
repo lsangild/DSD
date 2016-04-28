@@ -18,18 +18,21 @@ begin
 po : process(clk, reset)
 variable clk_count : integer;
 begin
+clk_out <= '0';
 	if reset = '0' then
-		clk_out <= '0';
+		clk_count := 0;
 	elsif rising_edge(clk) then
 		if speed = '1' then
 			clk_count := clk_count + 1;
-		else
+		elsif speed = '0' then
 			clk_count := clk_count + 200;
+		else
+		null;
 		end if;
 	else
 		null;
 	end if;
-	if clk_count = 50000000 then
+	if clk_count >= 50000000 then
 		clk_out <= '1';
 		clk_count := 0;
 	else

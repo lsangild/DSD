@@ -11,7 +11,6 @@ entity Tester is
 			HEX0		: out std_logic_vector(6 downto 0);
 			LEDR		: out std_logic_vector(0 downto 0)
 			);
-			
 end Tester;
 
 -----Architecture-----
