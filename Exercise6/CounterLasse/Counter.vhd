@@ -19,6 +19,8 @@ po: process(clk, reset)
 variable num : unsigned(3 downto 0);
 variable shift : std_logic;
 begin
+--	num := "0000";
+--	shift := '0';
 	if (reset = '0') then
 		num := "0000";
 		shift := '0';
@@ -26,7 +28,7 @@ begin
 		case mode is
 		  when "00" =>
 			-- count from 0-9
-			if num <= X"9" then
+			if num <= "1001" then
 				num := num + "0001";
 				shift := '0';
 			else
@@ -35,7 +37,7 @@ begin
 			end if;			
 		  when "01" =>
 			-- count from 0-5
-			if num <= X"5" then
+			if num <= "0101" then
 				num := num + "0001";
 				shift := '0';
 			else
@@ -45,14 +47,16 @@ begin
 						
 		  when others =>
 			-- count from 0-2
-			if num <= X"2" then
+			if num <= "0010" then
 				num := num + "0001";
 				shift := '0';
 			else
 				num := "0000";
 				shift := '1';
 			end if;			
-		end case;		
+		end case;
+	else
+		NULL;
 --	elsif mode = "00" and rising_edge(clk) and num <= "1001" then
 --		num := num + "0001";
 --		shift := '0';
