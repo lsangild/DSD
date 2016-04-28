@@ -25,6 +25,7 @@ begin
   process(reset, clk)
   begin
 	if(reset = '0') then	
+	
 	elsif (rising_edge(clk)) then
 		case (mode) is
 		when "00" =>
