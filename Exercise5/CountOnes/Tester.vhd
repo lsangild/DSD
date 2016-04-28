@@ -12,7 +12,7 @@ end Tester;
 
 -----Architectures-----
 architecture countOnesTester of Tester is
-signal toHex : std_logic_vector(3 downto 0);
+signal toHex : std_logic_vector(3 downto 0) := "0000";
 begin
 counter  : entity work.CountOnes port map(A => SW, ones => toHex);
 bintoHex : entity work.Binary_7_Segment port map(num => toHex, vis => HEX0);
