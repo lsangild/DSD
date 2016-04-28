@@ -5,10 +5,10 @@ use ieee.numeric_std.all;
 
 ----- Entity ------
 entity Tester is
-	port( 	KEY0, KEY3	: in std_logic;
+	port( KEY			: in std_logic_vector(3 downto 0);
 			SW         	: in std_logic_vector(17 downto 16);
 			HEX0       	: out std_logic_vector(6 downto 0);
-			LEDR0      	: out std_logic
+			LEDR      	: out std_logic_vector(0 downto 0)
 	);
 end Tester;
 
@@ -16,8 +16,8 @@ end Tester;
 architecture countTester of Tester is
 signal toHex : std_logic_vector(3 downto 0);
 begin
-counter : entity work.Counter port map(clk => KEY0, reset => KEY3, mode => SW, 
-										count => toHex, cout => LEDR0);
+counter : entity work.GrimTester port map(clk => KEY(0), reset => KEY(3), mode => SW, 
+										count => toHex, cout => LEDR);
 show    : entity work.Binary_7_Segment port map(num => toHex, vis => HEX0);
 
 end countTester;
