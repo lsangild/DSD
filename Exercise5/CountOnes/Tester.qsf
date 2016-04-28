@@ -46,8 +46,6 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name VHDL_FILE Tester.vhd
-set_global_assignment -name VHDL_FILE CountOnes.vhd
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity exercise1 -section_id Top
@@ -481,10 +479,13 @@ set_location_assignment PIN_W23 -to GPIO_1[35]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity exercise1 -section_id Top
 set_global_assignment -name SIMULATION_MODE FUNCTIONAL
 set_global_assignment -name VECTOR_OUTPUT_FORMAT VWF
-set_global_assignment -name CDF_FILE output_files/Chain1.cdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform1.vwf
 set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "F:/Dropbox/Universitet/Elektronik/2. semester/DSD/Exercise2-4/Exercise5/CountOnes/Waveform1.vwf"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE Binary_7_Segment.vhd
+set_global_assignment -name VHDL_FILE Tester.vhd
+set_global_assignment -name VHDL_FILE CountOnes.vhd
+set_global_assignment -name CDF_FILE output_files/Chain1.cdf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform1.vwf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
