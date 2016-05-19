@@ -165,8 +165,10 @@ TRANSITION_LIST("Code_Lock:cl|present_state")
 		REPEAT = 1;
 		LEVEL present_state.idle FOR 75.1;
 		LEVEL present_state.eval1 FOR 75.0;
+		LEVEL present_state.get2 FOR 75.0;
+		LEVEL present_state.eval2 FOR 75.0;
 		LEVEL present_state.wcode FOR 0.2;
-		LEVEL Undefined FOR 849.7;
+		LEVEL Undefined FOR 699.7;
 	}
 }
 
@@ -191,8 +193,8 @@ TRANSITION_LIST("SW[3]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 180.0;
-		LEVEL 1 FOR 580.0;
+		LEVEL 0 FOR 130.0;
+		LEVEL 1 FOR 630.0;
 		LEVEL 0 FOR 240.0;
 	}
 }
@@ -224,8 +226,8 @@ TRANSITION_LIST("SW[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 180.0;
-		LEVEL 1 FOR 150.0;
+		LEVEL 0 FOR 130.0;
+		LEVEL 1 FOR 200.0;
 		LEVEL 0 FOR 310.0;
 		LEVEL 1 FOR 120.0;
 		LEVEL 0 FOR 240.0;
@@ -247,8 +249,7 @@ TRANSITION_LIST("LEDR[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 450.1;
-		LEVEL X FOR 549.9;
+		LEVEL 1 FOR 1000.0;
 	}
 }
 
