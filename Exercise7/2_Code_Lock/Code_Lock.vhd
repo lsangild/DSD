@@ -13,7 +13,8 @@ entity Code_Lock is
 end Code_Lock;
 
 architecture simple of Code_Lock is
-type state is (idle, eval1, get2, eval2, unlocked, going_idle);
+type state is (idle, eval1, get2, eval2, unlocked, going_idle, wcode, permlock);
+type stateE is (Err_1, Err_2, Err_3);
 signal present_state, next_state : state;
 begin
 
@@ -38,7 +39,7 @@ begin
 			if (enter = '1' and code = "1001") then
 				next_state <= get2;
 			elsif (enter = '1' and code /= "1001") then
-				next_state <= idle;
+				next_state <= wcode;
 			end if;
 		when get2 =>
 			if enter = '0' then
@@ -48,7 +49,7 @@ begin
 			if (enter = '1' and code = "1110") then
 				next_state <= unlocked;
 			elsif (enter = '1' and code /= "1110") then
-				next_state <= idle;
+				next_state <= wcode;
 			end if;
 		when unlocked =>
 			if enter = '0' then
@@ -58,6 +59,12 @@ begin
 			if enter = '1' then
 				next_state <= idle;
 			end if;
+		when wcode =>
+			if enter = '0' then
+				next_state <= permlock;
+			end if;
+		when permlock =>
+			null;
 		when others =>
 			next_state <= idle;
 	end case;
