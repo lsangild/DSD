@@ -4,10 +4,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity Code_Lock is
-	port(	clk	:	in std_logic;
-			reset	:	in std_logic;
+	port(	clk, reset, enter	:	in std_logic;
 			code	:	in std_logic_vector(3 downto 0);
-			enter	:	in std_logic;
 			lock	:	out std_logic;
 			err	:	out std_logic_vector(1 downto 0)
 			);
@@ -17,7 +15,7 @@ architecture simple of Code_Lock is
 type state is (idle, eval1, get2, eval2, unlocked, going_idle, wcode, permlock);
 subtype state2 is std_logic_vector (1 downto 0);
 signal present_state, next_state : state;
-signal code_lock_present_state, code_lock_next_state : state2;
+signal code_lock_present_state, code_lock_next_state : state2 := "00";
 constant Err_0: state2 := "00";
 constant Err_1: state2 := "01";
 constant Err_2: state2 := "10";
@@ -76,7 +74,7 @@ begin
 				next_state <= idle;
 			end if;
 		when wcode =>
-			if code_lock_next_state = "11" then
+			if code_lock_next_state = Err_3 then
 				next_state <= permlock;
 			else
 				next_state <= going_idle;
@@ -88,10 +86,9 @@ begin
 	end case;
 end process;
 
-
-wrongcode: process(present_state,code_lock_present_state, next_state)
+wrongcode: process(present_state)
 begin
-if present_state = wcode and next_state /= wcode then
+if present_state = wcode then
 	case code_lock_present_state is
 		when Err_0 =>
 			code_lock_next_state <= Err_1;
