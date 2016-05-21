@@ -13,13 +13,9 @@ end Code_Lock;
 
 architecture simple of Code_Lock is
 type state is (idle, eval1, get2, eval2, unlocked, going_idle, wcode, permlock);
-subtype state2 is std_logic_vector (1 downto 0);
+type state2 is (Err_0, Err_1, Err_2, Err_3);
 signal present_state, next_state : state;
 signal code_lock_present_state, code_lock_next_state : state2;
-constant Err_0: state2 := "00";
-constant Err_1: state2 := "01";
-constant Err_2: state2 := "10";
-constant Err_3: state2 := "11";
 
 begin
 state_reg: process(clk, reset)
@@ -85,22 +81,33 @@ begin
 	end case;
 end process;
 
-wrongcode: process(present_state)
+wrongcode: process(present_state, enter)
 begin
-if present_state = wcode then
-	case code_lock_present_state is
-		when Err_0 =>
-			code_lock_next_state <= Err_1;
-		when Err_1 =>
-			code_lock_next_state <= Err_2;
-		when Err_2 =>
-			code_lock_next_state <= Err_3;
-		when Err_3 =>
-			code_lock_next_state <= Err_0;
+	code_lock_next_state <= code_lock_present_state;
+	if present_state = wcode then
+		case code_lock_present_state is
+			when Err_0 =>
+				code_lock_next_state <= Err_1;
+			when Err_1 =>
+				code_lock_next_state <= Err_2;
+			when Err_2 =>
+				code_lock_next_state <= Err_3;
+			when Err_3 =>
+				code_lock_next_state <= Err_0;
+			when others =>
+				code_lock_next_state <= Err_0;
+		end case;
+	end if;
+end process;
+
+outputs: process(present_state)
+begin
+	case present_state is
+		when unlocked =>
+			lock <= '0';
 		when others =>
-			code_lock_next_state <= Err_0;
-	end case;
-end if;
+			lock <= '1';
+		end case;
 end process;
 
 lock_out: process(code_lock_present_state, clk)
@@ -119,13 +126,4 @@ begin
 	end case;
 end process;
 
-outputs: process(present_state)
-begin
-	case present_state is
-		when unlocked =>
-			lock <= '0';
-		when others =>
-			lock <= '1';
-		end case;
-end process;
 end simple;

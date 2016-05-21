@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="Tester">
-		<CBX_INST_ENTRY INSTANCE_NAME="|Tester|Code_Lock:cl|lpm_mux:Mux0" CBX_FILE_NAME="mux_umc.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

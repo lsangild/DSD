@@ -167,8 +167,16 @@ TRANSITION_LIST("Code_Lock:cl|present_state")
 		LEVEL present_state.eval1 FOR 75.0;
 		LEVEL present_state.get2 FOR 75.0;
 		LEVEL present_state.eval2 FOR 75.0;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL present_state.wcode FOR 0.2;
+			LEVEL present_state.going_idle FOR 0.2;
+			LEVEL present_state.idle FOR 74.6;
+			LEVEL present_state.eval1 FOR 75.0;
+		}
 		LEVEL present_state.wcode FOR 0.2;
-		LEVEL Undefined FOR 699.7;
+		LEVEL present_state.permlock FOR 399.7;
 	}
 }
 
@@ -272,8 +280,10 @@ TRANSITION_LIST("LEDR[1]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 30.1;
-		LEVEL X FOR 969.9;
+		LEVEL 0 FOR 300.3;
+		LEVEL 1 FOR 150.0;
+		LEVEL 0 FOR 150.0;
+		LEVEL 1 FOR 399.7;
 	}
 }
 
@@ -282,8 +292,8 @@ TRANSITION_LIST("LEDR[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 30.1;
-		LEVEL X FOR 969.9;
+		LEVEL 0 FOR 450.3;
+		LEVEL 1 FOR 549.7;
 	}
 }
 
