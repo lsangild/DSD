@@ -15,14 +15,13 @@ architecture simple of Code_Lock is
 type state is (idle, eval1, get2, eval2, unlocked, going_idle, wcode, permlock);
 subtype state2 is std_logic_vector (1 downto 0);
 signal present_state, next_state : state;
-signal code_lock_present_state, code_lock_next_state : state2 := "00";
+signal code_lock_present_state, code_lock_next_state : state2;
 constant Err_0: state2 := "00";
 constant Err_1: state2 := "01";
 constant Err_2: state2 := "10";
 constant Err_3: state2 := "11";
 
 begin
-
 state_reg: process(clk, reset)
 begin
 	if reset = '0' then
@@ -104,9 +103,20 @@ if present_state = wcode then
 end if;
 end process;
 
-lock_out: process(code_lock_present_state)
+lock_out: process(code_lock_present_state, clk)
 begin
-	err <= code_lock_present_state;
+	case code_lock_present_state is
+		when Err_0 =>
+			err <= "00";
+		when Err_1 =>
+			err <= "01";
+		when Err_2 =>
+			err <= "10";
+		when Err_3 =>
+			err <= "11";
+		when others =>
+			err <= "00";
+	end case;
 end process;
 
 outputs: process(present_state)
