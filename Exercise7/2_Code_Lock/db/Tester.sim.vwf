@@ -158,6 +158,11 @@ SIGNAL("LEDR[2]")
 	PARENT = "";
 }
 
+GROUP("err")
+{
+	MEMBERS = "LEDR[1]", "LEDR[2]";
+}
+
 TRANSITION_LIST("Code_Lock:cl|present_state")
 {
 	NODE
@@ -165,18 +170,24 @@ TRANSITION_LIST("Code_Lock:cl|present_state")
 		REPEAT = 1;
 		LEVEL present_state.idle FOR 75.1;
 		LEVEL present_state.eval1 FOR 75.0;
+		LEVEL present_state.wcode FOR 0.2;
+		LEVEL present_state.going_idle FOR 0.2;
+		LEVEL present_state.idle FOR 74.6;
+		LEVEL present_state.eval1 FOR 75.0;
 		LEVEL present_state.get2 FOR 75.0;
 		LEVEL present_state.eval2 FOR 75.0;
-		NODE
-		{
-			REPEAT = 2;
-			LEVEL present_state.wcode FOR 0.2;
-			LEVEL present_state.going_idle FOR 0.2;
-			LEVEL present_state.idle FOR 74.6;
-			LEVEL present_state.eval1 FOR 75.0;
-		}
+		LEVEL present_state.unlocked FOR 75.0;
+		LEVEL present_state.going_idle FOR 75.0;
+		LEVEL present_state.idle FOR 110.0;
+		LEVEL present_state.eval1 FOR 20.0;
 		LEVEL present_state.wcode FOR 0.2;
-		LEVEL present_state.permlock FOR 399.7;
+		LEVEL present_state.going_idle FOR 0.2;
+		LEVEL present_state.idle FOR 29.6;
+		LEVEL present_state.eval1 FOR 40.0;
+		LEVEL present_state.wcode FOR 0.2;
+		LEVEL present_state.going_idle FOR 0.2;
+		LEVEL present_state.idle FOR 189.6;
+		LEVEL present_state.eval1 FOR 9.9;
 	}
 }
 
@@ -188,11 +199,17 @@ TRANSITION_LIST("KEY[3]")
 		LEVEL 1 FOR 75.0;
 		NODE
 		{
-			REPEAT = 6;
+			REPEAT = 3;
 			LEVEL 0 FOR 75.0;
 			LEVEL 1 FOR 75.0;
 		}
-		LEVEL 0 FOR 25.0;
+		LEVEL 0 FOR 75.0;
+		LEVEL 1 FOR 110.0;
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 30.0;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 190.0;
+		LEVEL 0 FOR 10.0;
 	}
 }
 
@@ -201,9 +218,11 @@ TRANSITION_LIST("SW[3]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 130.0;
-		LEVEL 1 FOR 630.0;
-		LEVEL 0 FOR 240.0;
+		LEVEL 0 FOR 270.0;
+		LEVEL 1 FOR 370.0;
+		LEVEL 0 FOR 110.0;
+		LEVEL 1 FOR 50.0;
+		LEVEL 0 FOR 200.0;
 	}
 }
 
@@ -212,9 +231,13 @@ TRANSITION_LIST("SW[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 330.0;
-		LEVEL 1 FOR 310.0;
-		LEVEL 0 FOR 360.0;
+		LEVEL 0 FOR 130.0;
+		LEVEL 1 FOR 140.0;
+		LEVEL 0 FOR 170.0;
+		LEVEL 1 FOR 190.0;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 110.0;
+		LEVEL 0 FOR 250.0;
 	}
 }
 
@@ -223,9 +246,11 @@ TRANSITION_LIST("SW[1]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 330.0;
+		LEVEL 0 FOR 130.0;
+		LEVEL 1 FOR 140.0;
+		LEVEL 0 FOR 170.0;
 		LEVEL 1 FOR 310.0;
-		LEVEL 0 FOR 360.0;
+		LEVEL 0 FOR 250.0;
 	}
 }
 
@@ -234,11 +259,13 @@ TRANSITION_LIST("SW[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 130.0;
-		LEVEL 1 FOR 200.0;
-		LEVEL 0 FOR 310.0;
-		LEVEL 1 FOR 120.0;
-		LEVEL 0 FOR 240.0;
+		LEVEL 0 FOR 270.0;
+		LEVEL 1 FOR 170.0;
+		LEVEL 0 FOR 190.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 110.0;
+		LEVEL 1 FOR 50.0;
+		LEVEL 0 FOR 200.0;
 	}
 }
 
@@ -248,7 +275,9 @@ TRANSITION_LIST("KEY[2]")
 	{
 		REPEAT = 1;
 		LEVEL 0 FOR 30.0;
-		LEVEL 1 FOR 970.0;
+		LEVEL 1 FOR 870.0;
+		LEVEL 0 FOR 50.0;
+		LEVEL 1 FOR 50.0;
 	}
 }
 
@@ -257,7 +286,9 @@ TRANSITION_LIST("LEDR[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 1 FOR 450.1;
+		LEVEL 0 FOR 75.0;
+		LEVEL 1 FOR 474.9;
 	}
 }
 
@@ -280,10 +311,11 @@ TRANSITION_LIST("LEDR[1]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 300.3;
-		LEVEL 1 FOR 150.0;
-		LEVEL 0 FOR 150.0;
-		LEVEL 1 FOR 399.7;
+		LEVEL 0 FOR 150.3;
+		LEVEL 1 FOR 300.0;
+		LEVEL 0 FOR 280.0;
+		LEVEL 1 FOR 70.0;
+		LEVEL 0 FOR 199.7;
 	}
 }
 
@@ -292,8 +324,9 @@ TRANSITION_LIST("LEDR[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 450.3;
-		LEVEL 1 FOR 549.7;
+		LEVEL 0 FOR 800.3;
+		LEVEL 1 FOR 99.7;
+		LEVEL 0 FOR 100.0;
 	}
 }
 
@@ -394,20 +427,32 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR[1]";
+	CHANNEL = "err";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 10;
 	TREE_LEVEL = 0;
+	CHILDREN = 11, 12;
 }
 
 DISPLAY_LINE
 {
 	CHANNEL = "LEDR[2]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 11;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 10;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 1;
+	PARENT = 10;
 }
 
 TIME_BAR

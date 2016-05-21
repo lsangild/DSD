@@ -18,7 +18,7 @@ signal present_state, next_state : state;
 signal code_lock_present_state, code_lock_next_state : state2;
 
 begin
-state_reg: process(clk, reset)
+state_reg: process(clk, reset)	-- reset and clocking to next state
 begin
 	if reset = '0' then
 		present_state <= idle;
@@ -27,7 +27,7 @@ begin
 	end if;
 end process;
 
-lock_reg: process(clk, reset)
+lock_reg: process(clk, reset)		-- reset and clocking to next state
 begin
 	if reset = '0' then
 		code_lock_present_state <= Err_0;
@@ -36,7 +36,7 @@ begin
 	end if;
 end process;
 
-nxt_state: process(present_state, enter)
+nxt_state: process(present_state, enter)	-- State Machine transitions
 begin
 	next_state <= present_state;
 	case present_state is
@@ -69,7 +69,7 @@ begin
 				next_state <= idle;
 			end if;
 		when wcode =>
-			if code_lock_next_state = Err_3 then
+			if code_lock_next_state = Err_3 then	-- if 3 errors occured go to permlock
 				next_state <= permlock;
 			else
 				next_state <= going_idle;
@@ -81,7 +81,7 @@ begin
 	end case;
 end process;
 
-wrongcode: process(present_state, enter)
+wrongcode: process(present_state)	-- State Machine transitions
 begin
 	code_lock_next_state <= code_lock_present_state;
 	if present_state = wcode then
@@ -97,10 +97,12 @@ begin
 			when others =>
 				code_lock_next_state <= Err_0;
 		end case;
+	elsif present_state = unlocked then -- Resets error counter if machine is unlocked
+		code_lock_next_state <= Err_0;
 	end if;
 end process;
 
-outputs: process(present_state)
+outputs: process(present_state)	-- State machine output
 begin
 	case present_state is
 		when unlocked =>
@@ -110,7 +112,7 @@ begin
 		end case;
 end process;
 
-lock_out: process(code_lock_present_state, clk)
+lock_out: process(code_lock_present_state)	-- State machine output
 begin
 	case code_lock_present_state is
 		when Err_0 =>
