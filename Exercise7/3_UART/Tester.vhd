@@ -1,14 +1,15 @@
 ----- Libraries -----
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity Tester is
-	port (	KEY		: in std_logic_vector(3 downto 0);
+	port (	CLOCK_50	: in std_logic;
+				KEY		: in std_logic_vector(3 downto 0);
 				SW			: in std_logic_vector(7 downto 0);
 				LEDR		: out std_logic_vector(7 downto 0);
 				GPIO_0	: in std_logic_vector(0 downto 0);
-				GPIO_1	: out std_logic_vector(0 downto 0);
-				CLOCK_50	: in std_logic
+				GPIO_1	: out std_logic_vector(0 downto 0)
 	);
 end Tester;
 
