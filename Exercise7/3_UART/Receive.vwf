@@ -26,15 +26,10 @@ HEADER
 	TIME_UNIT = ns;
 	DATA_OFFSET = 0.0;
 	DATA_DURATION = 1000.0;
-	SIMULATION_TIME = 1000.0;
+	SIMULATION_TIME = 0.0;
 	GRID_PHASE = 0.0;
 	GRID_PERIOD = 10.0;
 	GRID_DUTY_CYCLE = 50;
-}
-
-USER_TYPE("|Tester|Receiver:rec|present_state")
-{
-	VALUES = "present_state.idle", "present_state.reading", "present_state.stopping", "present_state.latchData";
 }
 
 SIGNAL("LEDR")
@@ -149,13 +144,12 @@ SIGNAL("KEY[0]")
 
 SIGNAL("Receiver:rec|present_state")
 {
-	VALUE_TYPE = ENUM;
+	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = MACHINE;
 	PARENT = "";
-	ENUM_NAME = "|Tester|Receiver:rec|present_state";
 }
 
 TRANSITION_LIST("LEDR[7]")
@@ -163,7 +157,7 @@ TRANSITION_LIST("LEDR[7]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -172,7 +166,7 @@ TRANSITION_LIST("LEDR[6]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -181,7 +175,7 @@ TRANSITION_LIST("LEDR[5]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -190,7 +184,7 @@ TRANSITION_LIST("LEDR[4]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -199,7 +193,7 @@ TRANSITION_LIST("LEDR[3]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -208,7 +202,7 @@ TRANSITION_LIST("LEDR[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -217,7 +211,7 @@ TRANSITION_LIST("LEDR[1]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -226,7 +220,7 @@ TRANSITION_LIST("LEDR[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL X FOR 1000.0;
 	}
 }
 
@@ -261,7 +255,7 @@ TRANSITION_LIST("Receiver:rec|present_state")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL present_state.idle FOR 1000.0;
+		LEVEL U FOR 1000.0;
 	}
 }
 
