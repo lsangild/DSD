@@ -60,6 +60,8 @@ begin
 	send_next_state <= send_present_state;
 	if present_state = sending then
 		case send_present_state is
+			when idle =>
+				send_next_state <= send0;
 			when send0 =>
 				send_next_state <= send1;
 			when send1 =>
@@ -75,9 +77,9 @@ begin
 			when send6 =>
 				send_next_state <= send7;
 			when send7 =>
-				send_next_state <= send0;
+				send_next_state <= idle;
 			when others =>
-				send_next_state <= send0;
+				send_next_state <= idle;
 		end case;
 	end if;
 end process;
