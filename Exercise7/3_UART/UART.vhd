@@ -8,6 +8,9 @@ entity UART is
 				txd, rxdata						: out std_logic;
 				rxdata							: out std_logic_vector(7 downto 0)
 	);
-end UART
+end UART;
 
-architecture 
+architecture U of UART is
+begin
+
+end U;
