@@ -13,11 +13,11 @@ entity Tester is
 end Tester;
 
 architecture test of Tester is
-signal clk_baud, rxvalid	: std_logic;
+signal clk_115200, rxvalid	: std_logic;
 signal indata					: std_logic_vector(7 downto 0);
 begin
-gen	: entity work.BaudRateGenerator		port map (clk => CLOCK_50, reset => KEY(0), clk_baud => clk_baud);
-rec	: entity work.Receiver					port map (rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_baud, rxdata => indata, rxvalid => rxvalid);
-tran	: entity work.Transmitter				port map (txdata => SW, reset => KEY(0), txvalid => KEY(3), clk_baud => clk_baud, txd => GPIO_1(0));
+gen	: entity work.BaudRateGenerator		port map (clk => CLOCK_50, reset => KEY(0), clk_baud => clk_115200);
+rec	: entity work.Receiver					port map (rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_115200, rxdata => indata, rxvalid => rxvalid);
+tran	: entity work.Transmitter				port map (txdata => SW, reset => KEY(0), txvalid => KEY(3), clk_baud => clk_115200, txd => GPIO_1(0));
 
 end test;
