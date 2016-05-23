@@ -152,26 +152,6 @@ SIGNAL("Receiver:rec|present_state")
 	PARENT = "";
 }
 
-SIGNAL("Receiver:rec|clk_baud")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
-SIGNAL("Receiver:rec|bit_cnt")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = MEMORY;
-	PARENT = "";
-}
-
 TRANSITION_LIST("LEDR[7]")
 {
 	NODE
@@ -257,14 +237,7 @@ TRANSITION_LIST("GPIO_0[0]")
 	NODE
 	{
 		REPEAT = 1;
-		NODE
-		{
-			REPEAT = 5;
-			LEVEL 0 FOR 8680.0;
-			LEVEL 1 FOR 8680.0;
-		}
-		LEVEL 0 FOR 8680.0;
-		LEVEL 1 FOR 4520.0;
+		LEVEL 0 FOR 100000.0;
 	}
 }
 
@@ -285,24 +258,6 @@ TRANSITION_LIST("Receiver:rec|present_state")
 		REPEAT = 1;
 		LEVEL U FOR 999.0;
 		LEVEL 0 FOR 99001.0;
-	}
-}
-
-TRANSITION_LIST("Receiver:rec|clk_baud")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 100000.0;
-	}
-}
-
-TRANSITION_LIST("Receiver:rec|bit_cnt")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL U FOR 100000.0;
 	}
 }
 
@@ -420,24 +375,6 @@ DISPLAY_LINE
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 11;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "Receiver:rec|clk_baud";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 12;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "Receiver:rec|bit_cnt";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 13;
 	TREE_LEVEL = 0;
 }
 
