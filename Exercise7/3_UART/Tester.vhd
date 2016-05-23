@@ -14,17 +14,18 @@ entity Tester is
 end Tester;
 
 architecture test of Tester is
-signal clk_115200, rxvalid	: std_logic;
-signal indata					: std_logic_vector(7 downto 0);
+signal clk_115200, invalid	: std_logic;
+signal recdata					: std_logic_vector(7 downto 0);
 begin
 gen	: entity work.BaudRateGenerator		port map (clk => CLOCK_50, reset => KEY(0), clk_baud => clk_115200);
-rec	: entity work.Receiver					port map (rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_115200, rxdata => indata, rxvalid => rxvalid);
+rec	: entity work.Receiver					port map (rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_115200, rxdata => indata, rxvalid => recvalid);
 --tran	: entity work.Transmitter				port map (txdata => SW, reset => KEY(0), txvalid => KEY(3), clk_baud => clk_115200, txd => GPIO_1(0));
-process(rxvalid)
+process(recvalid)
 begin
-	if rxvalid = '1' then
-		LEDR <= indata;
-	else	LEDR <= "00000000";
+	if invalid = '1' then
+		LEDR <= recdata;
+	else
+		null;
 	end if;
 end process;
 

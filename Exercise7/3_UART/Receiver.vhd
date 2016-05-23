@@ -34,10 +34,10 @@ begin
 				next_state <= reading;
 			end if;
 		when reading =>
-			if bit_cnt <= 7 then
+			if bit_cnt < 7 then
 				rxdata(bit_cnt) <= rxd;
 				bit_cnt := bit_cnt + 1;
-			else
+			elsif bit_cnt = 7 then
 				next_state <= stopping;
 			end if;
 		when stopping =>

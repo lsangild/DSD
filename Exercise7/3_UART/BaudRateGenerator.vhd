@@ -15,7 +15,7 @@ begin
 process(clk, reset)
 variable clk_count : integer;
 begin
-clk_baud <= '0';
+--clk_baud <= '0';
 	if reset = '0' then
 		clk_count := 0;
 	elsif rising_edge(clk) then
