@@ -1,4 +1,3 @@
-/* Simulator = Quartus II Simulator */
 /*
 WARNING: Do NOT edit the input and output ports in this file in a text
 editor if you plan to continue editing the block that represents it in
@@ -153,6 +152,26 @@ SIGNAL("Receiver:rec|present_state")
 	PARENT = "";
 }
 
+SIGNAL("BaudRateGenerator:gen|clk_baud")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("CLOCK_50")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
 TRANSITION_LIST("LEDR[7]")
 {
 	NODE
@@ -262,9 +281,32 @@ TRANSITION_LIST("Receiver:rec|present_state")
 	}
 }
 
+TRANSITION_LIST("BaudRateGenerator:gen|clk_baud")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("CLOCK_50")
+{
+	NODE
+	{
+		REPEAT = 1;
+		NODE
+		{
+			REPEAT = 5000;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+	}
+}
+
 DISPLAY_LINE
 {
-	CHANNEL = "KEY[0]";
+	CHANNEL = "CLOCK_50";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 0;
@@ -273,7 +315,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "GPIO_0[0]";
+	CHANNEL = "BaudRateGenerator:gen|clk_baud";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 1;
@@ -282,12 +324,30 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR";
+	CHANNEL = "KEY[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 2;
 	TREE_LEVEL = 0;
-	CHILDREN = 3, 4, 5, 6, 7, 8, 9, 10;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "GPIO_0[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 0;
+	CHILDREN = 5, 6, 7, 8, 9, 10, 11, 12;
 }
 
 DISPLAY_LINE
@@ -295,9 +355,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[7]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 3;
+	TREE_INDEX = 5;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -305,9 +365,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[6]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 4;
+	TREE_INDEX = 6;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -315,9 +375,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[5]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 5;
+	TREE_INDEX = 7;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -325,9 +385,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[4]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 6;
+	TREE_INDEX = 8;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -335,9 +395,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[3]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 7;
+	TREE_INDEX = 9;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -345,9 +405,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[2]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 8;
+	TREE_INDEX = 10;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -355,9 +415,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 9;
+	TREE_INDEX = 11;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -365,9 +425,9 @@ DISPLAY_LINE
 	CHANNEL = "LEDR[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 10;
+	TREE_INDEX = 12;
 	TREE_LEVEL = 1;
-	PARENT = 2;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
@@ -375,7 +435,7 @@ DISPLAY_LINE
 	CHANNEL = "Receiver:rec|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 11;
+	TREE_INDEX = 13;
 	TREE_LEVEL = 0;
 }
 
