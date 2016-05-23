@@ -35,7 +35,7 @@ begin
 		end if;
 end process;
 
-nxt_state : process(present_state, clk_baud, txvalid)
+nxt_state : process(present_state)
 begin
 	next_state <= present_state;
 	case present_state is
@@ -64,7 +64,7 @@ begin
 		end case;
 end process;
 
-send_nxt_state : process(present_state, clk_baud)
+send_nxt_state : process(present_state)
 begin
 send_next_state <= send_present_state;
 	if present_state = sending then
