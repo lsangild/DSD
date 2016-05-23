@@ -11,7 +11,7 @@ end Receiver;
 
 architecture Rec of Receiver is
 type state is (idle, reading, stopping, latchData);
-type state2 is (cnt0, cnt1, cnt2, cnt3, cnt4, cnt5, cnt6, cnt7);
+type state2 is (idle, cnt0, cnt1, cnt2, cnt3, cnt4, cnt5, cnt6, cnt7);
 signal present_state, next_state : state;
 signal cnt_present_state, cnt_next_state : state2;
 
@@ -29,7 +29,7 @@ end process;
 cnt_reg : process(clk_baud, reset)
 begin
 	if reset = '0' then
-		cnt_present_state <= cnt0;
+		cnt_present_state <= idle;
 	elsif rising_edge(clk_baud) then
 		cnt_present_state <= cnt_next_state;
 	end if;
@@ -67,6 +67,8 @@ begin
 cnt_next_state <= cnt_present_state;
 if	present_state = reading then
 	case cnt_present_state is
+		when idle =>
+			cnt_next_state <= cnt0;
 		when cnt0 =>
 			cnt_next_state <= cnt1;
 		when cnt1 =>
@@ -82,9 +84,9 @@ if	present_state = reading then
 		when cnt6 =>
 			cnt_next_state <= cnt7;
 		when cnt7 =>
-			cnt_next_state <= cnt0;
+			cnt_next_state <= idle;
 		when others =>
-		 cnt_next_state <= cnt0;
+		 cnt_next_state <= idle;
 	end case;
 	else
 		null;
@@ -103,6 +105,7 @@ end process;
 
 cnt_output : process(cnt_present_state)
 begin
+if falling_edge(clk_baud) then
 	case cnt_present_state is
 		when cnt0 =>
 			rxdata(0) <= rxd;
@@ -121,8 +124,11 @@ begin
 		when cnt7 =>
 			rxdata(7) <= rxd;
 		when others =>
-			rxdata <= "00000000";
+			null;
 	end case;
+else
+	null;
+end if;
 end process;
 
 end Rec;
