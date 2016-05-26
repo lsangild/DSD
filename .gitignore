@@ -214,6 +214,7 @@ TSWLatexianTemp*
 *.pin
 *.cdf
 *.tdb
+*.flock
 
 # Allow
 !Tools/de2_assignments.qsf
