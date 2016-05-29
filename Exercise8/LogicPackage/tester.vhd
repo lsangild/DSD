@@ -19,5 +19,5 @@ begin
   procedure_and_or(	SW(0), SW(1), 
 				LEDR(1), LEDR(2)); -- and at ledr1, or at ledr2
 
-h1: entity work.my_gates_ent port map(SW(0), SW(1), LEDR(3), LEDR(4), LEDR(5));
+--h1: entity work.my_gates_ent port map(SW(0), SW(1), LEDR(3), LEDR(4), LEDR(5));
 end architecture;
