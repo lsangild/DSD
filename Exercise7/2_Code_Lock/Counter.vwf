@@ -26,20 +26,10 @@ HEADER
 	TIME_UNIT = ns;
 	DATA_OFFSET = 0.0;
 	DATA_DURATION = 1000.0;
-	SIMULATION_TIME = 1000.0;
+	SIMULATION_TIME = 0.0;
 	GRID_PHASE = 0.0;
 	GRID_PERIOD = 10.0;
 	GRID_DUTY_CYCLE = 50;
-}
-
-USER_TYPE("|Tester|Code_Lock:cl|code_lock_present_state")
-{
-	VALUES = "code_lock_present_state.Err_0", "code_lock_present_state.Err_1", "code_lock_present_state.Err_2", "code_lock_present_state.Err_3";
-}
-
-USER_TYPE("|Tester|Code_Lock:cl|present_state")
-{
-	VALUES = "present_state.idle", "present_state.eval1", "present_state.get2", "present_state.eval2", "present_state.unlocked", "present_state.going_idle", "present_state.wcode", "present_state.permlock";
 }
 
 SIGNAL("CLOCK_50")
@@ -64,13 +54,12 @@ SIGNAL("KEY[2]")
 
 SIGNAL("Code_Lock:cl|code_lock_present_state")
 {
-	VALUE_TYPE = ENUM;
+	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = MACHINE;
 	PARENT = "";
-	ENUM_NAME = "|Tester|Code_Lock:cl|code_lock_present_state";
 }
 
 SIGNAL("KEY[3]")
@@ -85,13 +74,12 @@ SIGNAL("KEY[3]")
 
 SIGNAL("Code_Lock:cl|present_state")
 {
-	VALUE_TYPE = ENUM;
+	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = MACHINE;
 	PARENT = "";
-	ENUM_NAME = "|Tester|Code_Lock:cl|present_state";
 }
 
 SIGNAL("SW")
@@ -144,36 +132,6 @@ SIGNAL("SW[0]")
 	PARENT = "SW";
 }
 
-SIGNAL("LEDR[0]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
-SIGNAL("LEDR[1]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
-SIGNAL("LEDR[2]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
 TRANSITION_LIST("CLOCK_50")
 {
 	NODE
@@ -205,11 +163,7 @@ TRANSITION_LIST("Code_Lock:cl|code_lock_present_state")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL code_lock_present_state.Err_0 FOR 130.0;
-		LEVEL code_lock_present_state.Err_1 FOR 160.0;
-		LEVEL code_lock_present_state.Err_2 FOR 140.0;
-		LEVEL code_lock_present_state.Err_3 FOR 290.0;
-		LEVEL code_lock_present_state.Err_0 FOR 280.0;
+		LEVEL U FOR 1000.0;
 	}
 }
 
@@ -235,19 +189,7 @@ TRANSITION_LIST("Code_Lock:cl|present_state")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL present_state.idle FOR 50.0;
-		LEVEL present_state.eval1 FOR 60.0;
-		LEVEL present_state.wcode FOR 20.0;
-		LEVEL present_state.going_idle FOR 20.0;
-		LEVEL present_state.idle FOR 100.0;
-		LEVEL present_state.eval1 FOR 20.0;
-		LEVEL present_state.wcode FOR 20.0;
-		LEVEL present_state.going_idle FOR 20.0;
-		LEVEL present_state.idle FOR 80.0;
-		LEVEL present_state.eval1 FOR 20.0;
-		LEVEL present_state.wcode FOR 20.0;
-		LEVEL present_state.permlock FOR 290.0;
-		LEVEL present_state.idle FOR 280.0;
+		LEVEL U FOR 1000.0;
 	}
 }
 
@@ -284,39 +226,6 @@ TRANSITION_LIST("SW[0]")
 	{
 		REPEAT = 1;
 		LEVEL 0 FOR 1000.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[1]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 130.0;
-		LEVEL 1 FOR 160.0;
-		LEVEL 0 FOR 140.0;
-		LEVEL 1 FOR 290.0;
-		LEVEL 0 FOR 280.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[2]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 290.0;
-		LEVEL 1 FOR 430.0;
-		LEVEL 0 FOR 280.0;
 	}
 }
 
@@ -412,33 +321,6 @@ DISPLAY_LINE
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 9;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[0]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 10;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[1]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 11;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[2]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 12;
 	TREE_LEVEL = 0;
 }
 
