@@ -32,12 +32,12 @@ HEADER
 	GRID_DUTY_CYCLE = 50;
 }
 
-USER_TYPE("|Mee_Moo|present_state")
+USER_TYPE("|Tester|Mee_Moo:sm1|present_state")
 {
 	VALUES = "present_state.idle", "present_state.init", "present_state.active";
 }
 
-SIGNAL("clk")
+SIGNAL("KEY[0]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -47,37 +47,17 @@ SIGNAL("clk")
 	PARENT = "";
 }
 
-SIGNAL("inp")
+SIGNAL("KEY[1]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = BUS;
-	WIDTH = 2;
-	LSB_INDEX = 0;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
 	DIRECTION = INPUT;
 	PARENT = "";
 }
 
-SIGNAL("inp[1]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "inp";
-}
-
-SIGNAL("inp[0]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "inp";
-}
-
-SIGNAL("mea_out")
+SIGNAL("LEDR[0]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -87,7 +67,7 @@ SIGNAL("mea_out")
 	PARENT = "";
 }
 
-SIGNAL("moo_out")
+SIGNAL("LEDR[1]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -97,7 +77,27 @@ SIGNAL("moo_out")
 	PARENT = "";
 }
 
-SIGNAL("present_state")
+SIGNAL("SW[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("SW[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("Mee_Moo:sm1|present_state")
 {
 	VALUE_TYPE = ENUM;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -105,142 +105,91 @@ SIGNAL("present_state")
 	LSB_INDEX = -1;
 	DIRECTION = MACHINE;
 	PARENT = "";
-	ENUM_NAME = "|Mee_Moo|present_state";
+	ENUM_NAME = "|Tester|Mee_Moo:sm1|present_state";
 }
 
-SIGNAL("reset")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
-TRANSITION_LIST("clk")
+TRANSITION_LIST("KEY[0]")
 {
 	NODE
 	{
 		REPEAT = 1;
 		NODE
 		{
-			REPEAT = 12;
-			LEVEL 0 FOR 40.0;
-			LEVEL 1 FOR 40.0;
-		}
-		LEVEL 0 FOR 40.0;
-	}
-}
-
-TRANSITION_LIST("inp[1]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		NODE
-		{
-			REPEAT = 1;
-			LEVEL 0 FOR 100.0;
-			LEVEL 1 FOR 100.0;
-		}
-		LEVEL 0 FOR 100.0;
-		LEVEL 1 FOR 150.0;
-		LEVEL 0 FOR 100.0;
-		LEVEL 1 FOR 50.0;
-		LEVEL 0 FOR 100.0;
-		LEVEL 1 FOR 100.0;
-		NODE
-		{
-			REPEAT = 1;
-			LEVEL 0 FOR 100.0;
-			LEVEL 1 FOR 100.0;
-		}
-	}
-}
-
-TRANSITION_LIST("inp[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		NODE
-		{
-			REPEAT = 3;
-			LEVEL 0 FOR 50.0;
-			LEVEL 1 FOR 50.0;
-		}
-		LEVEL 0 FOR 50.0;
-		LEVEL 1 FOR 250.0;
-		LEVEL 0 FOR 50.0;
-		LEVEL 1 FOR 50.0;
-		NODE
-		{
-			REPEAT = 3;
+			REPEAT = 10;
 			LEVEL 0 FOR 50.0;
 			LEVEL 1 FOR 50.0;
 		}
 	}
 }
 
-TRANSITION_LIST("mea_out")
+TRANSITION_LIST("KEY[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13.176;
+		LEVEL 1 FOR 986.824;
+	}
+}
+
+TRANSITION_LIST("LEDR[0]")
 {
 	NODE
 	{
 		REPEAT = 1;
 		LEVEL 0 FOR 150.0;
-		LEVEL 1 FOR 50.0;
-		LEVEL 0 FOR 160.0;
-		LEVEL 1 FOR 90.0;
-		LEVEL 0 FOR 500.0;
-		LEVEL 1 FOR 50.0;
+		LEVEL 1 FOR 200.0;
+		LEVEL 0 FOR 650.0;
 	}
 }
 
-TRANSITION_LIST("moo_out")
+TRANSITION_LIST("LEDR[1]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 120.0;
-		LEVEL 1 FOR 80.0;
-		LEVEL 0 FOR 160.0;
-		LEVEL 1 FOR 240.0;
-		LEVEL 0 FOR 320.0;
-		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 208.62;
+		LEVEL 1 FOR 60.756;
+		LEVEL 0 FOR 730.624;
 	}
 }
 
-TRANSITION_LIST("present_state")
+TRANSITION_LIST("SW[0]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL present_state.idle FOR 120.0;
-		LEVEL present_state.init FOR 80.0;
-		LEVEL present_state.idle FOR 160.0;
-		LEVEL present_state.init FOR 160.0;
-		LEVEL present_state.active FOR 80.0;
-		LEVEL present_state.idle FOR 320.0;
-		LEVEL present_state.init FOR 80.0;
+		LEVEL 0 FOR 208.62;
+		LEVEL 1 FOR 60.756;
+		LEVEL 0 FOR 730.624;
 	}
 }
 
-TRANSITION_LIST("reset")
+TRANSITION_LIST("SW[1]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 120.0;
-		LEVEL 1 FOR 610.0;
-		LEVEL 0 FOR 50.0;
-		LEVEL 1 FOR 220.0;
+		LEVEL 0 FOR 130.296;
+		LEVEL 1 FOR 140.544;
+		LEVEL 0 FOR 729.16;
+	}
+}
+
+TRANSITION_LIST("Mee_Moo:sm1|present_state")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL present_state.idle FOR 150.0;
+		LEVEL present_state.init FOR 200.0;
+		LEVEL present_state.idle FOR 650.0;
 	}
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "clk";
+	CHANNEL = "KEY[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 0;
@@ -249,37 +198,34 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "inp";
-	EXPAND_STATUS = EXPANDED;
+	CHANNEL = "KEY[1]";
+	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 1;
 	TREE_LEVEL = 0;
-	CHILDREN = 2, 3;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "inp[1]";
+	CHANNEL = "LEDR[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 2;
-	TREE_LEVEL = 1;
-	PARENT = 1;
+	TREE_LEVEL = 0;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "inp[0]";
+	CHANNEL = "LEDR[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 3;
-	TREE_LEVEL = 1;
-	PARENT = 1;
+	TREE_LEVEL = 0;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "mea_out";
+	CHANNEL = "SW[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 4;
@@ -288,7 +234,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "moo_out";
+	CHANNEL = "SW[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 5;
@@ -297,19 +243,10 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "present_state";
+	CHANNEL = "Mee_Moo:sm1|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 6;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "reset";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 7;
 	TREE_LEVEL = 0;
 }
 
