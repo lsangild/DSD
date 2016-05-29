@@ -28,7 +28,7 @@ set_global_assignment -name DEVICE EP2C35F672C8
 set_global_assignment -name TOP_LEVEL_ENTITY vga
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 8.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:02:26  APRIL 23, 2009"
-set_global_assignment -name LAST_QUARTUS_VERSION 9.1
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_palace
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 14622752 -section_id Top
@@ -82,4 +82,5 @@ set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPCS16
 set_global_assignment -name RESERVE_ASDO_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

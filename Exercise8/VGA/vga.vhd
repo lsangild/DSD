@@ -36,7 +36,36 @@ attribute keep of vSyncCounter : signal is true;  --   ||   --
 attribute keep of hSyncCounter: signal is true;  --   ||   --
 
 -- INSERT YOUR PROCEDURE HERE.
--- Your procedure should circular increment syncCounter, produce blanking and sync output.  
+-- Your procedure should circular increment syncCounter, produce blanking and sync output.
+procedure syncGenerator(
+	signal syncCounter	: inout integer;
+	signal syncOut			: out std_logic;
+	signal blankOut		: out std_logic;
+	constant frontPorch	: in natural;
+	constant backPorch	: in natural;
+	constant dataLen		: in natural;
+	constant syncWidth	: in natural) is
+	
+begin
+		syncCounter <= syncCounter + 1;
+		case syncCounter is
+			when backPorch =>
+				blankOut <= '1';
+				syncOut <= '0';
+			when dataLen =>
+				blankOut <= '0';
+				syncOut <= '0';
+			when frontPorch =>
+				blankOut <= '1';
+				syncOut <= '0';
+			when 1023 =>
+				blankOut <= '1';
+				syncOut <= '1';
+			when others =>
+				syncOut <= '0';
+				blankOut <= '0';
+		end case;
+end procedure;
 
 begin
 clkdiv: process (reset,clk)  -- creates a 25 MHz pixel clock (clk25) from a 50 MHz input (clk).
