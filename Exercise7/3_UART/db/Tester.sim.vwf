@@ -32,7 +32,107 @@ HEADER
 	GRID_DUTY_CYCLE = 50;
 }
 
-SIGNAL("CLOCK_50")
+USER_TYPE("|RecTest|Receiver:rec|cnt_present_state")
+{
+	VALUES = "cnt_present_state.idle", "cnt_present_state.cnt0", "cnt_present_state.cnt1", "cnt_present_state.cnt2", "cnt_present_state.cnt3", "cnt_present_state.cnt4", "cnt_present_state.cnt5", "cnt_present_state.cnt6", "cnt_present_state.cnt7";
+}
+
+USER_TYPE("|RecTest|Receiver:rec|present_state")
+{
+	VALUES = "present_state.idle", "present_state.reading", "present_state.stopping", "present_state.latchData";
+}
+
+SIGNAL("LEDR")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 8;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("LEDR[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("LEDR[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
+}
+
+SIGNAL("GPIO_0[0]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -52,14 +152,181 @@ SIGNAL("KEY[0]")
 	PARENT = "";
 }
 
-SIGNAL("LEDR[0]")
+SIGNAL("Receiver:rec|present_state")
+{
+	VALUE_TYPE = ENUM;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = MACHINE;
+	PARENT = "";
+	ENUM_NAME = "|RecTest|Receiver:rec|present_state";
+}
+
+SIGNAL("BaudRateGenerator:gen|clk_baud")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
+	DIRECTION = BURIED;
 	PARENT = "";
+}
+
+SIGNAL("CLOCK_50")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("Receiver:rec|cnt_present_state")
+{
+	VALUE_TYPE = ENUM;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = MACHINE;
+	PARENT = "";
+	ENUM_NAME = "|RecTest|Receiver:rec|cnt_present_state";
+}
+
+TRANSITION_LIST("LEDR[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 0 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 1 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 0 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 1 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 0 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 1 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 1 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 52250.0;
+		LEVEL 1 FOR 47750.0;
+	}
+}
+
+TRANSITION_LIST("GPIO_0[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 8960.0;
+		LEVEL 0 FOR 8960.0;
+		LEVEL 1 FOR 3840.0;
+		LEVEL 0 FOR 2560.0;
+		LEVEL 1 FOR 3840.0;
+		LEVEL 0 FOR 5120.0;
+		LEVEL 1 FOR 66720.0;
+	}
+}
+
+TRANSITION_LIST("KEY[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 99980.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|present_state")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL present_state.idle FOR 12050.0;
+		LEVEL present_state.reading FOR 36180.0;
+		LEVEL present_state.stopping FOR 4020.0;
+		LEVEL present_state.latchData FOR 4020.0;
+		LEVEL present_state.idle FOR 43730.0;
+	}
+}
+
+TRANSITION_LIST("BaudRateGenerator:gen|clk_baud")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 4010.0;
+		NODE
+		{
+			REPEAT = 23;
+			LEVEL 1 FOR 20.0;
+			LEVEL 0 FOR 4000.0;
+		}
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 3510.0;
+	}
 }
 
 TRANSITION_LIST("CLOCK_50")
@@ -76,30 +343,21 @@ TRANSITION_LIST("CLOCK_50")
 	}
 }
 
-TRANSITION_LIST("KEY[0]")
+TRANSITION_LIST("Receiver:rec|cnt_present_state")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 400.0;
-		LEVEL 1 FOR 99600.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 9050.0;
-		NODE
-		{
-			REPEAT = 10;
-			LEVEL 1 FOR 20.0;
-			LEVEL 0 FOR 8660.0;
-		}
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 4130.0;
+		LEVEL cnt_present_state.idle FOR 16070.0;
+		LEVEL cnt_present_state.cnt0 FOR 4020.0;
+		LEVEL cnt_present_state.cnt1 FOR 4020.0;
+		LEVEL cnt_present_state.cnt2 FOR 4020.0;
+		LEVEL cnt_present_state.cnt3 FOR 4020.0;
+		LEVEL cnt_present_state.cnt4 FOR 4020.0;
+		LEVEL cnt_present_state.cnt5 FOR 4020.0;
+		LEVEL cnt_present_state.cnt6 FOR 4020.0;
+		LEVEL cnt_present_state.cnt7 FOR 4020.0;
+		LEVEL cnt_present_state.idle FOR 51770.0;
 	}
 }
 
@@ -114,7 +372,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "KEY[0]";
+	CHANNEL = "BaudRateGenerator:gen|clk_baud";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 1;
@@ -123,10 +381,127 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR[0]";
+	CHANNEL = "KEY[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 2;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "GPIO_0[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 0;
+	CHILDREN = 5, 6, 7, 8, 9, 10, 11, 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 9;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 10;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 11;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|present_state";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|cnt_present_state";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 14;
 	TREE_LEVEL = 0;
 }
 

@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 
 entity Receiver is
 	port (	rxd, reset, clk_baud	: in std_logic;
-				rxdata					: out std_logic_vector(7 downto 0);
+				rxdata					: out std_logic_vector(0 to 7);  -- Reverse order to load in from the right end
 				rxvalid					: out std_logic
 			);
 end Receiver;
