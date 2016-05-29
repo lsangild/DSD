@@ -39,31 +39,35 @@ attribute keep of hSyncCounter: signal is true;  --   ||   --
 -- Your procedure should circular increment syncCounter, produce blanking and sync output.
 procedure syncGenerator(
 	signal syncCounter	: inout integer range 0 to 1023;
-	signal syncOut			: out std_logic;
+	signal syncOut		: out std_logic;
 	signal blankOut		: out std_logic;
-	constant frontPorch	: natural;
-	constant backPorch	: natural;
-	constant dataLen		: natural;
-	constant syncWidth	: natural) is
+	constant frontPorch	: in natural;
+	constant backPorch	: in natural;
+	constant dataLen	: in natural;
+	constant syncWidth	: in natural) is
 	
 begin
-		syncCounter <= syncCounter + 1;
-		if syncCounter <= backPorch then
-				blankOut <= '1';
-				syncOut <= '1';
-		elsif syncCounter <= (backPorch + dataLen) then
-				blankOut <= '0';
-				syncOut <= '1';
-		elsif syncCounter < (backPorch + dataLen + frontPorch) then
-				blankOut <= '1';
-				syncOut <= '1';
-		elsif syncCounter = (backPorch + dataLen + frontPorch + syncWidth) then
-				blankOut <= '1';
-				syncOut <= '0';
-		else
-				syncOut <= '1';
-				blankOut <= '0';
-		end if;
+	syncCounter <= syncCounter + 1;
+	if syncCounter <= backPorch then		-- left side black area 
+			blankOut <= '1';
+			syncOut <= '1';
+	elsif syncCounter <= (backPorch + dataLen) then	-- Data area
+			blankOut <= '0';
+			syncOut <= '1';
+	elsif syncCounter < (backPorch + dataLen + frontPorch) then	-- right side black area
+			blankOut <= '1';
+			syncOut <= '1';
+	elsif syncCounter = (backPorch + dataLen + frontPorch + syncWidth) then		-- reset line
+			blankOut <= '1';
+			syncOut <= '0';
+			syncCounter <= 0;
+	elsif syncCounter > (backPorch + dataLen + frontPorch) then 		-- sync area
+			blankOut <= '1';
+			syncOut <= '0';
+	else
+			syncOut <= '1';
+			blankOut <= '0';
+	end if;
 end procedure;
 
 begin
